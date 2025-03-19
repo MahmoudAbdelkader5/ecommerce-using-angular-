@@ -1,0 +1,29 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">Your Cart</h2>
+  <div *ngIf="message" class="alert alert-info">{{ message }}</div>
+  <div *ngIf="cartItems.length === 0" class="alert alert-warning text-center">Your cart is empty.</div>
+  <div *ngFor="let item of cartItems" class="card mb-3 shadow-sm">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img [src]="item.images[0]" class="img-fluid rounded-start" alt="Product Image">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.title }}</h5>
+          <p class="card-text">{{ item.description }}</p>
+          <p class="card-text"><strong>Price:</strong> ${{ item.price }}</p>
+          <div class="d-flex align-items-center">
+            <button id="{{ 'decrease-item-btn-' + item.id }}" class="btn btn-danger me-2" (click)="decreaseItemCount(item)">-</button>
+            <span class="mx-2">{{ coutval }}</span>
+            <button id="{{ 'increase-item-btn-' + item.id }}" class="btn btn-success ms-2" (click)="increaseItemCount(item)">+</button>
+          </div>
+          <br>
+          <button class="btn btn-danger w-100" (click)="removeItem(item)">Remove from Cart</button>
+        </div>
+        <div class="card-footer text-end">
+          <h4>Total Price: <span class="text-success">${{item.price * coutval}}</span></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

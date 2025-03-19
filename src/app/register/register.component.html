@@ -1,0 +1,81 @@
+<h2 class="text-center mb-4">Register | Reactive Forms</h2>
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+  <!-- Name Field -->
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input
+      id="name"
+      type="text"
+      formControlName="name"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid': registerForm.controls['name'].invalid && registerForm.controls['name'].touched
+      }"
+    />
+    <div *ngIf="registerForm.controls['name'].invalid && registerForm.controls['name'].touched" class="alert alert-danger mt-2">
+      <span *ngIf="registerForm.controls['name'].hasError('required')">Name is required.</span>
+    </div>
+  </div>
+
+  <!-- Email Field -->
+  <div class="mb-3">
+    <label for="email" class="form-label">Email Address</label>
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid': registerForm.controls['email'].invalid && registerForm.controls['email'].touched
+      }"
+    />
+    <div *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched" class="alert alert-danger mt-2">
+      <span *ngIf="registerForm.controls['email'].hasError('required')">Email is required.</span>
+      <span *ngIf="registerForm.controls['email'].hasError('email')">Please enter a valid email address.</span>
+    </div>
+  </div>
+
+  <!-- Username Field -->
+  <div class="mb-3">
+    <label for="phone" class="form-label">phone</label>
+    <input
+      id="phone"
+      type="text"
+      formControlName="phone"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid': registerForm.controls['phone'].invalid && registerForm.controls['phone'].touched
+      }"
+    />
+    <div *ngIf="registerForm.controls['phone'].invalid && registerForm.controls['phone'].touched" class="alert alert-danger mt-2">
+      <span *ngIf="registerForm.controls['phone'].hasError('required')">phone  is required.</span>
+      <span *ngIf="registerForm.controls['phone'].hasError('pattern')">phone not valid</span>
+    </div>
+  </div>
+
+  <!-- Password Field -->
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      id="password"
+      type="password"
+      formControlName="password"
+      class="form-control"
+      [ngClass]="{
+      'is-invalid': registerForm.controls['password'].invalid && registerForm.controls['password'].touched
+      }"
+    />
+    <div *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched" class="alert alert-danger mt-2">
+      <span *ngIf="registerForm.controls['password'].hasError('required')">Password is required.</span>
+      <span *ngIf="registerForm.controls['password'].hasError('minlength')">Password must be at least 8 characters long.</span>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="d-grid">
+    <button type="submit"  [disabled]="registerForm.invalid" class="btn btn-primary w-50 m-auto">
+      Register
+    </button>
+  </div>
+</form>

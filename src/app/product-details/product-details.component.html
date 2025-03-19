@@ -1,0 +1,25 @@
+<div class="container my-5">
+    <div class="card shadow-lg">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img [src]="product.images[0]" class="img-fluid rounded-start" alt="Product Image">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title text-primary">{{ product.title }}</h1>
+            <p class="card-text"><strong>Description:</strong> {{ product.description }}</p>
+            <p class="card-text"><strong>Category:</strong> <span class="badge bg-info text-dark">{{ product.category }}</span></p>
+            <p class="card-text"><strong>Price:</strong> <span class="text-success fw-bold">{{ product.price }}</span></p>
+            <p class="card-text">
+              <strong>Stock:</strong> 
+              <span [class]="product.stock > 0 ? 'text-success' : 'text-danger'">
+                {{ product.stock > 0 ? 'In Stock' : 'Out of Stock' }}
+              </span>
+            </p>
+            <p class="card-text"><strong>Brand:</strong> {{ product.brand }}</p>
+            <button class="btn btn-success"(click)="addToCart(product.id)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

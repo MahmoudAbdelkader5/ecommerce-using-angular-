@@ -1,0 +1,46 @@
+/* Pagination container */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Adds space between buttons and text */
+  }
+  
+  /* Pagination buttons */
+  .pagination-button {
+    padding: 8px 16px;
+    border-radius: 20px; /* Rounded corners */
+    border: 1px solid #007bff; /* Primary color border */
+    background-color: transparent;
+    color: #007bff; /* Primary color text */
+    font-weight: 500;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  /* Hover effect for buttons */
+  .pagination-button:hover:not(:disabled) {
+    background-color: #007bff; /* Primary color background */
+    color: white; /* White text on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Subtle shadow */
+  }
+  
+  /* Disabled button styling */
+  .pagination-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    border-color: #cccccc; /* Gray border for disabled state */
+    color: #cccccc; /* Gray text for disabled state */
+  }
+  
+  /* Current page highlight */
+  .current-page {
+    font-weight: bold;
+    color: #007bff; /* Primary color for current page */
+  }
+  
+  /* Page info text */
+  .page-info {
+    font-size: 16px;
+    color: #333; /* Dark text for better readability */
+  }

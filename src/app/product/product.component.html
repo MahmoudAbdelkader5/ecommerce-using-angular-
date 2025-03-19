@@ -1,0 +1,79 @@
+<div class="container py-4">
+  <!-- Search Input -->
+  <div class="row mb-3">
+    <div class="col">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Search products..." 
+        [(ngModel)]="searchTerm" 
+        (input)="filterProducts(searchTerm)">
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let p of filteredProducts" class="col">
+      <div class="card shadow-sm h-100">
+        <!-- Card Header -->
+        <div class="card-header text-center">
+          <h5 [ngClass]="{'text-success': p.stock > 0, 'text-danger': p.stock === 0}">
+            {{ p.stock === 0 ? 'Out of Stock' : 'In Stock' }}
+          </h5>
+        </div>
+
+        <!-- Product Image -->
+        <img 
+          [src]="p.images[0]" 
+          class="card-img-top" 
+          alt="Product Image" 
+          style="height: 300px;">
+
+        <!-- Card Body -->
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ p.title }}</h5>
+          <h5 class="card-title">{{ p.price | currency }}</h5>
+          <h5 class="card-title">
+            Price after Discount: {{ p.price | currency }}
+          </h5>
+          <p class="card-text">{{ p.description }}</p>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer d-flex justify-content-around">
+          <button 
+            class="btn btn-success w-45" 
+            (click)="addToCart(p.id)" 
+            [disabled]="p.stock === 0">
+            Add to Cart
+          </button>
+          <button 
+            class="btn btn-danger w-45" 
+            (click)="navigateToDetails(p.id)">
+            Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination mt-4 text-center">
+    <button 
+      (click)="changePage(currentPage - 1)" 
+      [disabled]="currentPage === 1" 
+      class="btn btn-outline-primary mx-1 pagination-button">
+      Previous
+    </button>
+    
+    <!-- Display current page and total pages -->
+    <span class="mx-2 page-info">
+      Page <span class="current-page">{{ currentPage }}</span> of {{ totalPages }}
+    </span>
+    
+    <button 
+      (click)="changePage(currentPage + 1)" 
+      [disabled]="currentPage === totalPages" 
+      class="btn btn-outline-primary mx-1 pagination-button">
+      Next
+    </button>
+  </div>
+</div>
