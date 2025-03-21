@@ -35,5 +35,6 @@ export interface iproduct {
     qrCode: string;
   };
   images: string[];
-thumbnail: string;
+  thumbnail: string;
+  count?: number; // Optional property to track the quantity of the product in the cart
 }

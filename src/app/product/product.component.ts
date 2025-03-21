@@ -41,7 +41,6 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  // Method to handle search term from header
   onSearchTermChange(term: string) {
     this.searchTerm = term;
     this.filterProducts(term);
@@ -49,7 +48,7 @@ export class ProductComponent implements OnInit {
 
   filterProducts(query: string) {
     this.filteredProducts = this.product.filter(p =>
-      p.title.toLowerCase().includes(query.toLowerCase()) // Filter by product title
+      p.title.toLowerCase().includes(query.toLowerCase()) 
     );
   }
 

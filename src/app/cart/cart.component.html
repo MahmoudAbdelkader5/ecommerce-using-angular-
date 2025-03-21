@@ -1,5 +1,6 @@
 <div class="container my-5">
   <h2 class="text-center mb-4">Your Cart</h2>
+
   <div *ngIf="message" class="alert alert-info">{{ message }}</div>
   <div *ngIf="cartItems.length === 0" class="alert alert-warning text-center">Your cart is empty.</div>
   <div *ngFor="let item of cartItems" class="card mb-3 shadow-sm">
@@ -13,15 +14,15 @@
           <p class="card-text">{{ item.description }}</p>
           <p class="card-text"><strong>Price:</strong> ${{ item.price }}</p>
           <div class="d-flex align-items-center">
-            <button id="{{ 'decrease-item-btn-' + item.id }}" class="btn btn-danger me-2" (click)="decreaseItemCount(item)">-</button>
-            <span class="mx-2">{{ coutval }}</span>
-            <button id="{{ 'increase-item-btn-' + item.id }}" class="btn btn-success ms-2" (click)="increaseItemCount(item)">+</button>
+            <button class="btn btn-danger me-2" (click)="decreaseItemCount(item)">-</button>
+            <span class="mx-2">{{ item.count || 1 }}</span>
+            <button class="btn btn-success ms-2" (click)="increaseItemCount(item)">+</button>
           </div>
           <br>
           <button class="btn btn-danger w-100" (click)="removeItem(item)">Remove from Cart</button>
         </div>
         <div class="card-footer text-end">
-          <h4>Total Price: <span class="text-success">${{item.price * coutval}}</span></h4>
+          <h4>Total Price: <span class="text-success">${{ item.price * (item.count || 1) }}</span></h4>
         </div>
       </div>
     </div>

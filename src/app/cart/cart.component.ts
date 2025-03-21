@@ -12,7 +12,6 @@ import { iproduct } from './../Types/iproduct';
 })
 export class CartComponent implements OnInit {
   cartItems: iproduct[] = [];
-  coutval: number = 1;
   message: string = '';
 
   constructor(private productService: ProductDataService) {}
@@ -23,40 +22,36 @@ export class CartComponent implements OnInit {
 
   private loadCartItems(): void {
     this.productService.getCartItems().subscribe((items: iproduct[]) => {
-      this.cartItems = items;
+      this.cartItems = items.map(item => ({ ...item, count: 1 }));
     });
   }
 
   removeItem(product: iproduct): void {
     this.productService.removeFromCart(product.id.toString());
     this.cartItems = this.cartItems.filter(item => item.id !== product.id);
-    this.showTemporaryMessage('Item removed from cart');
   }
 
   increaseItemCount(product: iproduct): void {
     const item = this.cartItems.find(item => item.id === product.id);
     if (item) {
-      this.coutval += 1;
-      this.productService.setCounter(this.coutval);
-      this.showTemporaryMessage('Item count increased');
+      item.count = (item.count || 1) + 1;
+      this.productService.setCounter(item.count);
     }
   }
 
   decreaseItemCount(product: iproduct): void {
     const item = this.cartItems.find(item => item.id === product.id);
     if (item) {
-      if (this.coutval > 1) {
-        this.coutval -= 1;
-        this.productService.setCounter(this.coutval);
-        this.showTemporaryMessage('Item count decreased');
+      if ((item.count || 1) > 1) {
+        item.count = (item.count || 1) - 1;
+        this.productService.setCounter(item.count);
       } else {
         this.removeItem(product);
       }
     }
   }
 
-  private showTemporaryMessage(msg: string): void {
-    this.message = msg;
-    setTimeout(() => (this.message = ''), 3000);
+  getTotalPrice(): number {
+    return this.cartItems.reduce((acc, item) => acc + item.price * (item.count || 1), 0);
   }
 }

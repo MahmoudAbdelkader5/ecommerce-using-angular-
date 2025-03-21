@@ -14,9 +14,7 @@ export class ProductDataService {
   constructor(private http: HttpClient) {}
 
   fetchProducts(): Observable<any> {
-    return this.http.get('https://dummyjson.com/products', {
-      
-    });
+    return this.http.get('https://dummyjson.com/products');
   }
   getCounter(): Observable<number> {
     return this.counter.asObservable();
@@ -24,6 +22,7 @@ export class ProductDataService {
   setCounter(count: number): void {
     this.counter.next(count);
   }
+  
 
   getproductbyid(id: string): Observable<iproduct> {
     return this.http.get<iproduct>('https://dummyjson.com/products/' + id);
@@ -52,28 +51,14 @@ export class ProductDataService {
     const currentItems = this.cartItems.value.filter(item => item.id !== +productId);
     this.cartItems.next(currentItems);
   }
+  
 
 getcatecory(): Observable<any> {
-  return this.http.get('https://dummyjson.com/products/categories', {
-    params: {
-      limit: 5,
-    },
-  });
+  return this.http.get('https://dummyjson.com/products/categories');
 }
   
-  getProductsByCategory(category: string): Observable<iproduct[]> {
-    return this.http.get<iproduct[]>('https://dummyjson.com/products/category/' + category,
-      {
-        params: {
-          limit: 5,
-        },
-      }
-    );
-  }
-  getPaginationRange(totalProducts: number, itemsPerPage: number): number[] {
-    return Array.from({ length: Math.ceil(totalProducts / itemsPerPage) }, (_, i) => i + 1);
-  }
 
+  
   
   fetchProduct(offset: number, limit: number): Observable<any> {
     return this.http.get('https://dummyjson.com/products', {

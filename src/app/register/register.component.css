@@ -1,0 +1,62 @@
+body {  
+  font-family: 'Poppins', sans-serif;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  height: 100vh;  
+  margin: 0;  
+}  
+
+.card {  
+  border-radius: 20px; /* Rounded corners for the card */  
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Box shadow */  
+  background-color: #ffffff; /* White background for card */  
+  padding: 40px;  
+}  
+
+.form-control {  
+  border-radius: 25px; /* Rounded corners for inputs */  
+  transition: all 0.3s ease-in-out; /* Smooth transition */  
+}  
+
+.form-control:focus {  
+  box-shadow: 0 0 0 0.3rem rgba(37, 117, 252, 0.3); /* Blue shadow on focus */  
+  border-color: #2575fc; /* Border color change on focus */  
+}  
+
+.btn-primary {  
+  background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient button */  
+  border: none; /* Remove border */  
+  border-radius: 25px; /* Round button */  
+  font-weight: bold;  
+  transition: all 0.3s ease; /* Smooth transition */  
+}  
+
+.btn-primary:hover {  
+  background: linear-gradient(45deg, #5a10b3, #2164f5); /* Darker gradient on hover */  
+  transform: scale(1.05); /* Scale effect on hover */  
+}  
+
+.alert {  
+  margin-top: 10px; /* Spacing for alerts */  
+}  
+
+.input-icon {  
+  position: relative;  
+}  
+
+.input-icon input {  
+  padding-left: 40px; /* Space for the icon */  
+}  
+
+.input-icon i {  
+  position: absolute;  
+  left: 15px;  
+  top: 50%;  
+  transform: translateY(-50%); /* Center the icon */  
+  color: #6c757d; /* Gray color for icons */  
+}  
+
+h2 {  
+  color: #25274d; /* Accent color for the title */  
+}  

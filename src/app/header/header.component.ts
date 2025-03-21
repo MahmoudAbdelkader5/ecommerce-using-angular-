@@ -12,11 +12,11 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Output() searchEvent = new EventEmitter<string>(); // Emit search query
+  @Output() searchEvent = new EventEmitter<string>(); 
   category: any[] = [];
   countval = 0;
   searchQuery = '';
-  searchTerm: string = ''; // Declare searchTerm property
+  searchTerm: string = ''; 
 
   constructor(private readonly productService: ProductDataService) {}
 
@@ -26,11 +26,11 @@ export class HeaderComponent implements OnInit {
   }
 
   searchProducts() {
-    this.searchEvent.emit(this.searchQuery.trim()); // Emit trimmed search query
+    this.searchEvent.emit(this.searchQuery.trim()); 
   }
 
   onSearch() {
-    this.searchEvent.emit(this.searchTerm); // Emit the search term
+    this.searchEvent.emit(this.searchTerm); 
   }
 
   private loadCartItems(): void {
@@ -42,6 +42,11 @@ export class HeaderComponent implements OnInit {
         console.error('Failed to load cart items:', err);
       }
     });
+  }
+  logout()
+  {
+    
+    window.location.href = '/login';
   }
 
   private loadCategories(): void {
